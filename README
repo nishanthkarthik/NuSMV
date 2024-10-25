@@ -1,0 +1,7 @@
+Build
+
+- Invoke `cmake -B build -S NuSMV -DBUILD_CMD_HELP=OFF -DCMAKE_BUILD_TYPE=Release`
+- Then `make -C build -j$(nproc) NuSMV`
+- Run it from `build/bin/NuSMV`
+
+`BUILD_CMD_HELP` does not work after running 2to3 on create_help.py, so we turn it off above.
