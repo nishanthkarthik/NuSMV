@@ -9,6 +9,7 @@ check_type_size("void *" _voidp_size)
 add_definitions(-DNUSMV_SIZEOF_INT=${_int_size})
 add_definitions(-DNUSMV_SIZEOF_LONG=${_long_size})
 add_definitions(-DNUSMV_SIZEOF_VOID_P=${_voidp_size})
+add_compile_options(-include unistd.h)
 
 add_definitions(-DHAVE_IEEE_754 -DBSD)
 if(APPLE)

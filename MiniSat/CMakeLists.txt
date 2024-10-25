@@ -70,7 +70,7 @@ add_custom_command(OUTPUT "${PROJECT_BINARY_DIR}/${minisat_patch}"
 
 add_custom_command(
   OUTPUT "${PROJECT_BINARY_DIR}/${minisat_dir}/${minisat_ifcname}"
-  COMMAND ${PATCH} -p0 -N < "${PROJECT_BINARY_DIR}/${minisat_patch}"
+  COMMAND ${PATCH} -p0 -N < "${PROJECT_BINARY_DIR}/${minisat_patch}" || exit 0
   WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
   DEPENDS "${PROJECT_BINARY_DIR}/${minisat_patch}"
   )
@@ -101,7 +101,7 @@ if(minisat_use_cmake)
               "-DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}"
               "-DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}"
               "-DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}"
-              "-DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}"
+              "-DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -std=c++03'"
               -DCMAKE_BUILD_TYPE=${_cur_cmake_build} -DUSE_ZLIB=OFF .
       COMMAND "${CMAKE_COMMAND}" --build . --target lib
       WORKING_DIRECTORY "${PROJECT_BINARY_DIR}/${minisat_dir}"
